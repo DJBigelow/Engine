@@ -1,6 +1,4 @@
-#ifndef SHADER_H
-#define SHADER_H
-
+#pragma once
 #include <glad/glad.h>
 
 #include <string>
@@ -8,13 +6,12 @@
 #include <sstream>
 #include <iostream>
 
-class Shader
-{
-public:
-    unsigned int ID;
+
+#include "shader_s.h"
+
     // constructor generates the shader on the fly
     // ------------------------------------------------------------------------
-    Shader(const char* vertexPath, const char* fragmentPath)
+    Shader::Shader(const char* vertexPath, const char* fragmentPath)
     {
         // 1. retrieve the vertex/fragment source code from filePath
         std::string vertexCode;
@@ -70,31 +67,36 @@ public:
     }
     // activate the shader
     // ------------------------------------------------------------------------
-    void use()
+    void Shader::use()
     {
         glUseProgram(ID);
     }
+
+
     // utility uniform functions
     // ------------------------------------------------------------------------
-    void setBool(const std::string& name, bool value)
+    const void Shader::setBool(const std::string& name, bool value)
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
     }
+
     // ------------------------------------------------------------------------
-    void setInt(const std::string& name, int value)
+    const void Shader::setInt(const std::string& name, int value)
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
     }
+
+
+
     // ------------------------------------------------------------------------
     //void setInt(const std::string& name, int value) const
     //{
     //    glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
     //}
 
-private:
     // utility function for checking shader compilation/linking errors.
     // ------------------------------------------------------------------------
-    void checkCompileErrors(unsigned int shader, std::string type)
+    void Shader::checkCompileErrors(unsigned int shader, std::string type)
     {
         int success;
         char infoLog[1024];
@@ -117,5 +119,3 @@ private:
             }
         }
     }
-};
-#endif

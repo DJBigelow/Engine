@@ -2,6 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "shader_s.h"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -15,41 +19,14 @@ void processInput(GLFWwindow* window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec3 aColor;\n"
-"layout (location = 2) in vec2 aTexCoord;\n"
 
-"out vec3 color;\n"
-"out vec2 texCoord;\n"
-
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"   color = aColor;\n"
-"   texCoord = aTexCoord;\n"
-"}\0";
-
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-
-"in vec3 color;\n"
-"in vec2 texCoord;\n"
-
-"uniform sampler2D textureSampler;"
-
-"void main()\n"
-"{\n"
-"   FragColor = texture(textureSampler, texCoord);\n"
-"}\n\0";
 
 int main()
 {
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -80,52 +57,52 @@ int main()
 
 
 
-    // Shaders
-    // ------------------------------------
-    // vertex shader
-    int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
+    //// Shaders (This code is no longer necessary beacuse of the Shader class, but the comments are still useful for reference)
+    //// ------------------------------------
+    //// vertex shader
+    //int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    //glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    //glCompileShader(vertexShader);
 
-    // check for shader compile errors
-    int success;
-    char infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
+    //// check for shader compile errors
+    //int success;
+    //char infoLog[512];
+    //glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    //if (!success)
+    //{
+    //    glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+    //    std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    //}
 
-    // fragment shader
-    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
+    //// fragment shader
+    //int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    //glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    //glCompileShader(fragmentShader);
 
-    // check for shader compile errors
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
+    //// check for shader compile errors
+    //glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    //if (!success)
+    //{
+    //    glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+    //    std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    //}
 
-    // link shaders
-    int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
+    //// link shaders
+    //int shaderProgram = glCreateProgram();
+    //glAttachShader(shaderProgram, vertexShader);
+    //glAttachShader(shaderProgram, fragmentShader);
+    //glLinkProgram(shaderProgram);
 
-    // check for linking errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+    //// check for linking errors
+    //glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    //if (!success) {
+    //    glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+    //    std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    //}
+    //glDeleteShader(vertexShader);
+    //glDeleteShader(fragmentShader);
 
-
+    Shader shader("resources/shaders/vertex_shader.vs", "resources/shaders/fragment_shader.fs");
 
 
 
@@ -229,7 +206,7 @@ int main()
 
 
 
-    // render loop
+    // Render Loop
     // -----------
     while (!glfwWindowShouldClose(window))
     {
@@ -242,11 +219,16 @@ int main()
         glClearColor(0.1f, 0.6f, 0.6f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        
+        //The argument of 1.0 sets the diagonals of the matrix to 1.0
+        glm::mat4 transform = glm::mat4(1.0f);
 
-        // draw our first triangle
-        
-        glUseProgram(shaderProgram);
+        //Translate the transform along the x axis and rotate the transform around the z axis with time
+        transform = glm::translate(transform, glm::vec3(sin(glfwGetTime()) * 0.5, 0.0f, 0.0f));
+        transform = glm::rotate(transform, glm::radians(static_cast<float>(glfwGetTime() * 10.0)), glm::vec3(0.0, 0.0, 1.0));
+        unsigned int transformLocation = glGetUniformLocation(shader.ID, "transform");
+        glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
+
+        shader.use();
         glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         //glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -264,7 +246,7 @@ int main()
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
-    glDeleteProgram(shaderProgram);
+    //glDeleteProgram(shaderProgram);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

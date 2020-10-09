@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\OpenGL\resources\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\OpenGL\resources\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\School\SE_Practicum\Engine\resources\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\School\SE_Practicum\Engine\resources\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -144,7 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\glad\src\glad.c" />
+    <ClCompile Include="..\..\..\..\..\Users\panca\Downloads\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shader.cpp" />
   </ItemGroup>
