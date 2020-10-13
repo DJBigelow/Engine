@@ -9,6 +9,7 @@ uniform mat4 projectionTransform;
 
 out vec3 color;  
 out vec2 texCoord;  
+out vec3 position;
 void main()  
 {  
    gl_Position = projectionTransform * viewTransform * transform * vec4(aPos, 1.0f);  
