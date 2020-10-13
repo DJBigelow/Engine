@@ -258,14 +258,21 @@ void processKeyboardInput(GLFWwindow* window, float deltaTime)
    
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.translate(CameraMovement::FORWARD, deltaTime);
+
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
         camera.translate(CameraMovement::BACKWARD, deltaTime);
+
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.translate(CameraMovement::RIGHT, deltaTime);
+
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
         camera.translate(CameraMovement::LEFT, deltaTime);
 
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        camera.translate(CameraMovement::UP, deltaTime);
 
+    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+        camera.translate(CameraMovement::DOWN, deltaTime);
 
 }
 

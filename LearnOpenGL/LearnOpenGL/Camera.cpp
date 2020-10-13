@@ -43,7 +43,16 @@ void Camera::translate(CameraMovement camMovement, float deltaTime)
 	case CameraMovement::LEFT:
 		direction = -right;
 		break;
+
+	case CameraMovement::UP:
+		direction = up;
+		break;
+
+	case CameraMovement::DOWN:
+		direction = -up;
+		break;
 	}
+
 
 	position += direction * movementSpeed * deltaTime;
 }
