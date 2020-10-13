@@ -14,7 +14,8 @@
 
 
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window, Camera& camera, float deltaTime);
+void processKeyboardInput(GLFWwindow* window, float deltaTime);
+void processMouseInput(GLFWwindow* window, double xPosition, double yPosition);
 unsigned int loadTexture(const char* imageFilepath);
 
 
@@ -22,6 +23,12 @@ unsigned int loadTexture(const char* imageFilepath);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
+double mouseX = SCR_WIDTH / 2.0f;
+double mouseY = SCR_HEIGHT / 2.0f;
+
+//The camera has to be a global variable as it's used in the callback for glfwSetCursorPosCallback, which can't
+//accept a callback with a camera in its parameter list
+Camera camera;
 
 
 int main()
@@ -32,6 +39,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    
 
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -48,6 +56,7 @@ int main()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetCursorPosCallback(window, processMouseInput);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -56,25 +65,12 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
     Shader shader("resources/shaders/vertex_shader.vs", "resources/shaders/fragment_shader.fs");
 
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
-    //float vertices[] = {
-    //    //Positions           //Colors            //Texture Coords
-    //    0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top right
-    //    0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom right
-    //   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom left
-    //   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top left 
-    //};
-
-    
-        
-        
-        
 
     float cube[] = {
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -122,22 +118,15 @@ int main()
 
 
 
-    //unsigned int indices[] = { 
-    //    0, 1, 3,  // first Triangle
-    //    1, 2, 3   // second Triangle
-    //};
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    //glGenBuffers(1, &EBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+  
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
 
-   /* glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube), indices, GL_STATIC_DRAW);*/
 
     //Positions
     //Arguments:
@@ -166,23 +155,18 @@ int main()
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     glBindVertexArray(0);
 
-
-
-
-    //Textures
-    //----------------------------------------
-    //Load box texture data
     unsigned int texture = loadTexture("resources/textures/container.jpg");
 
-
-    glEnable(GL_DEPTH_TEST);
 
     float previousTime = 0.0f;
     float currentTime;
     float deltaTime;
 
-    Camera camera;
+   
 
+   
+
+    glEnable(GL_DEPTH_TEST);
     // Render Loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -193,7 +177,7 @@ int main()
 
         // input
         // -----
-        processInput(window, camera, deltaTime);
+        processKeyboardInput(window, deltaTime);
 
         // render
         // ------
@@ -266,12 +250,11 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow* window, Camera &camera, float deltaTime)
+void processKeyboardInput(GLFWwindow* window, float deltaTime)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    CameraMovement direction;
    
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.translate(CameraMovement::FORWARD, deltaTime);
@@ -285,6 +268,18 @@ void processInput(GLFWwindow* window, Camera &camera, float deltaTime)
 
 
 }
+
+void processMouseInput(GLFWwindow* window, double newMouseX, double newMouseY)
+{
+    double mouseDeltaX = newMouseX - mouseX;
+    double mouseDeltaY = mouseY - newMouseY;
+
+    mouseX = newMouseX;
+    mouseY = newMouseY;
+
+    camera.rotate(mouseDeltaX, mouseDeltaY);
+}
+
 
 unsigned int loadTexture(const char* imageFilepath)
 {

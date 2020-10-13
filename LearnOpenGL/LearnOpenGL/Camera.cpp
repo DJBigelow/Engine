@@ -47,3 +47,32 @@ void Camera::translate(CameraMovement camMovement, float deltaTime)
 
 	position += direction * movementSpeed * deltaTime;
 }
+
+void Camera::rotate(double xOffset, double yOffset)
+{
+	xOffset *= mouseSensitivity;
+	yOffset *= mouseSensitivity;
+
+	pitch += yOffset;
+	yaw += xOffset;
+
+	if (pitch > 89.9f) {
+		pitch = 89.9f;
+	}
+
+	updateDirectionVectors();
+}
+
+void Camera::updateDirectionVectors()
+{
+	float yawRadians = glm::radians(yaw);
+	float pitchRadians = glm::radians(pitch);
+
+	forward.x = cos(yawRadians) * cos(pitchRadians);
+	forward.y = sin(pitchRadians);
+	forward.z = sin(yawRadians) * cos(pitchRadians);
+
+	forward = glm::normalize(forward);
+	right = glm::normalize(glm::cross(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
+	up = glm::normalize(glm::cross(right, forward));
+}

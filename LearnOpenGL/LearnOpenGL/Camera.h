@@ -24,6 +24,7 @@ public:
 	glm::mat4 getViewMatrix();
 
 	void translate(CameraMovement camMovement, float deltaTime);
+	void rotate(double xOffset, double yOffset);
 
 private:
 	glm::vec3 position;
@@ -38,5 +39,5 @@ private:
 	float mouseSensitivity;
 	float zoom;
 
-
+	void updateDirectionVectors();
 };
