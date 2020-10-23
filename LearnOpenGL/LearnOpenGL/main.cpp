@@ -74,47 +74,47 @@ int main()
 
 
     float cube[] = {
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+         0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+        -0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
 
-        -0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+         0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+        -0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
 
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
 
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
 
-        -0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f, -0.5f,
-         0.5f, -0.5f,  0.5f,
-         0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
 
-        -0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f, -0.5f,
-         0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f
     };
 
 
@@ -137,10 +137,11 @@ int main()
     //5: The stride, which is the space between consecutive vertex attributes. In this case, the stride is the length of 
     //   three vertices, three color coordinates, and two texture coordinates (8 floats total)
     //6: The offset of where the data begins in the buffer
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     unsigned int lightVAO;
     glGenVertexArrays(1, &lightVAO);
@@ -179,6 +180,7 @@ int main()
         glClearColor(0.1f, 0.6f, 0.6f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        glm::vec3 lightPosition = glm::vec3(2.0f, 2.0f, 0.0f);
 
         //-----------
         //Render cube
@@ -198,6 +200,8 @@ int main()
         cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.44f);
         cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
+        cubeShader.setVec3("lightPosition", lightPosition.x, lightPosition.y, lightPosition.z);
+
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -210,7 +214,7 @@ int main()
 
         glm::mat4 lightTransform = glm::mat4(1.0f);
         lightTransform = glm::translate(lightTransform, glm::vec3(2.0));
-        lightTransform = glm::scale(lightTransform, glm::vec3(0.2f));
+        lightTransform = glm::scale(lightTransform, lightPosition);
         lightShader.setMat4("modelTransform", lightTransform);
 
         glBindVertexArray(lightVAO);
