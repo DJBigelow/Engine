@@ -28,6 +28,8 @@ public:
 	void translate(CameraMovement camMovement, float deltaTime);
 	void rotate(double xOffset, double yOffset);
 
+	glm::vec3 getPosition();
+
 private:
 	glm::vec3 position;
 	glm::vec3 forward;

@@ -72,6 +72,11 @@ void Camera::rotate(double xOffset, double yOffset)
 	updateDirectionVectors();
 }
 
+glm::vec3 Camera::getPosition()
+{
+	return position;
+}
+
 void Camera::updateDirectionVectors()
 {
 	float yawRadians = glm::radians(yaw);

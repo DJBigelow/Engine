@@ -92,6 +92,12 @@
         glUniform3f(uniformLocation, x, y, z);
     }
 
+    const void Shader::setVec3(const std::string& name, glm::vec3 vector)
+    {
+        unsigned int uniformLocation = glGetUniformLocation(ID, name.c_str());
+        glUniform3f(uniformLocation, vector.x, vector.y, vector.z);
+    }
+
     const void Shader::setMat4(const std::string& name, glm::mat4 matrix)
     {
         unsigned int uniformLocation = glGetUniformLocation(ID, name.c_str());

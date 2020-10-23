@@ -74,6 +74,7 @@ int main()
 
 
     float cube[] = {
+       //Vertex Data             Normal Data
         -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
          0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
          0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
@@ -140,8 +141,11 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
+    //Specify normal data
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
+
 
     unsigned int lightVAO;
     glGenVertexArrays(1, &lightVAO);
@@ -149,11 +153,9 @@ int main()
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-    // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 
     unsigned int texture = loadTexture("resources/textures/container.jpg");
 
@@ -197,10 +199,19 @@ int main()
         glm::mat4 viewTransformation = camera.getViewMatrix();
         cubeShader.setMat4("viewTransform", viewTransformation);
 
+
+        glm::mat4 normalMatrix = glm::transpose(glm::inverse(modelTransform));
+        cubeShader.setMat4("normalMatrix", normalMatrix);
+
+
+        cubeShader.setVec3("cameraPosition", camera.getPosition());
+
         cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.44f);
         cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
-        cubeShader.setVec3("lightPosition", lightPosition.x, lightPosition.y, lightPosition.z);
+        lightPosition.x *= sin(glfwGetTime());
+        lightPosition.y *= -cos(glfwGetTime());
+        cubeShader.setVec3("lightPosition", lightPosition);
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -213,8 +224,8 @@ int main()
         lightShader.setMat4("viewTransform", viewTransformation);
 
         glm::mat4 lightTransform = glm::mat4(1.0f);
-        lightTransform = glm::translate(lightTransform, glm::vec3(2.0));
-        lightTransform = glm::scale(lightTransform, lightPosition);
+        lightTransform = glm::translate(lightTransform, lightPosition);
+        lightTransform = glm::scale(lightTransform, glm::vec3(0.2f));
         lightShader.setMat4("modelTransform", lightTransform);
 
         glBindVertexArray(lightVAO);
