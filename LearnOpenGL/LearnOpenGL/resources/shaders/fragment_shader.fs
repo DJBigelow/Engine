@@ -1,12 +1,12 @@
 #version 330 core  
-out vec4 FragColor;  
-in vec3 color;  
-in vec2 texCoord;
-in vec3 position;
 
-uniform sampler2D textureSampler; 
+uniform vec3 objectColor;
+uniform vec3 lightColor;
+
+out vec4 FragColor;  
+
+
 void main()  
 {  
-   // FragColor = texture(textureSampler, texCoord);
-   FragColor = normalize(gl_FragCoord);
+   FragColor = vec4(objectColor * lightColor, 1.0);
 } ;

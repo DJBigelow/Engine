@@ -86,6 +86,18 @@
         glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
     }
 
+    const void Shader::setVec3(const std::string& name, float x, float y, float z)
+    {
+        unsigned int uniformLocation = glGetUniformLocation(ID, name.c_str());
+        glUniform3f(uniformLocation, x, y, z);
+    }
+
+    const void Shader::setMat4(const std::string& name, glm::mat4 matrix)
+    {
+        unsigned int uniformLocation = glGetUniformLocation(ID, name.c_str());
+        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+    }
+
 
 
     // ------------------------------------------------------------------------

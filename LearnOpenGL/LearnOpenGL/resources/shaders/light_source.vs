@@ -1,7 +1,6 @@
 #version 330 core  
 layout (location = 0) in vec3 aPos;  
 
-
 uniform mat4 modelTransform;
 uniform mat4 viewTransform;
 uniform mat4 projectionTransform; 
