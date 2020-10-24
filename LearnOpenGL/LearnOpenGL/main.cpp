@@ -20,8 +20,8 @@ unsigned int loadTexture(const char* imageFilepath);
 
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1200;
+const unsigned int SCR_HEIGHT = 675;
 
 double mouseX = SCR_WIDTH / 2.0f;
 double mouseY = SCR_HEIGHT / 2.0f;
@@ -206,12 +206,38 @@ int main()
 
         cubeShader.setVec3("cameraPosition", camera.getPosition());
 
+
         cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.44f);
-        cubeShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        
+        //Obsidian
+      /*  cubeShader.setVec3("material.ambientStrength", glm::vec3(0.05375f, 0.05f, 0.06625f));
+        cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.18275f, 0.17f, 0.22525f));
+        cubeShader.setVec3("material.specularStrength", glm::vec3(0.332741f, 0.328634f, 0.346435f));
+        cubeShader.setFloat("material.shininess", 0.3f);*/
+
+        ///*Pearl*/
+        //cubeShader.setVec3("material.ambientStrength", glm::vec3(0.25f, 0.20725f, 0.20725f));
+        //cubeShader.setVec3("material.diffuseStrength", glm::vec3(1.0f, 0.829f, 0.829f));
+        //cubeShader.setVec3("material.specularStrength", glm::vec3(0.296648f, 0.296648f, 0.296648f));
+        //cubeShader.setFloat("material.shininess", 0.088f);
+        //
+
+        //Brass
+        cubeShader.setVec3("material.ambientStrength", glm::vec3(0.2125f, 0.1275f, 0.054f));
+        cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.714f, 0.4284f, 0.18144f));
+        cubeShader.setVec3("material.specularStrength", glm::vec3(0.393548f, 0.271906f, 0.166721f));
+        cubeShader.setFloat("material.shininess", 25.6);
+
+        cubeShader.setVec3("light.ambientStrength", glm::vec3(1.0f));
+        cubeShader.setVec3("light.diffuseStrength", glm::vec3(1.0f));
+        cubeShader.setVec3("light.specularStrength", glm::vec3(1.0f));
+
+
 
         lightPosition.x *= sin(glfwGetTime());
         lightPosition.y *= -cos(glfwGetTime());
         cubeShader.setVec3("lightPosition", lightPosition);
+
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
