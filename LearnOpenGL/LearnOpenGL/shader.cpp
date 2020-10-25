@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-#include "shader_s.h"
+#include "Shader.h"
 
     // constructor generates the shader on the fly
     // ------------------------------------------------------------------------

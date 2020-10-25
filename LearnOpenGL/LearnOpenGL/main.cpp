@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "shader_s.h"
+#include "Shader.h"
 #include "Camera.h"
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -233,7 +233,7 @@ int main()
         cubeShader.setVec3("light.specularStrength", glm::vec3(1.0f));
 
 
-
+        lightPosition.z = -1.0f;
         lightPosition.x *= sin(glfwGetTime());
         lightPosition.y *= -cos(glfwGetTime());
         cubeShader.setVec3("lightPosition", lightPosition);
