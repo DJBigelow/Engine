@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include <string>
 
 std::vector<Vertex> Mesh::getVertices()
 {
@@ -42,6 +43,42 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
 
     intializeBuffers();
 }
+
+void Mesh::Draw(Shader& shader)
+{
+    unsigned int numDiffuseTextures = 1;
+    unsigned int numSpecularTextures = 1;
+
+    for (int i = 0; i < textures.size(); ++i) 
+    {
+        std::string textureNum;
+
+        glActiveTexture(GL_TEXTURE0 + i);
+
+        if (textures[i].type == "texture_diffuse") 
+        {
+            textureNum = std::to_string(numDiffuseTextures++);
+        }
+        else if (textures[i].type == "texture_diffuse")
+        {
+            textureNum = std::to_string(numSpecularTextures++);
+        }
+
+        std::string materialName = "material." + textures[i].type + textureNum;
+        shader.setFloat(materialName.c_str(), i);
+
+        glBindTexture(GL_TEXTURE_2D, textures[i].id);
+
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+}
+
+
 
 void Mesh::intializeBuffers()
 {

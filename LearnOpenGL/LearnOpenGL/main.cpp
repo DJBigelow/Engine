@@ -226,7 +226,7 @@ int main()
         cubeShader.setVec3("material.ambientStrength", glm::vec3(0.2125f, 0.1275f, 0.054f));
         cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.714f, 0.4284f, 0.18144f));
         cubeShader.setVec3("material.specularStrength", glm::vec3(0.393548f, 0.271906f, 0.166721f));
-        cubeShader.setFloat("material.shininess", 25.6);
+        cubeShader.setFloat("material.shininess", 25.6f);
 
         cubeShader.setVec3("light.ambientStrength", glm::vec3(1.0f));
         cubeShader.setVec3("light.diffuseStrength", glm::vec3(1.0f));
