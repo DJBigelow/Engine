@@ -74,48 +74,48 @@ int main()
 
 
     float cube[] = {
-       //Vertex Data             Normal Data
-        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
-         0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
-        -0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
-        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,
+        // positions             // normals           // texture coords
+        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    1.0f,  1.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    1.0f,  1.0f,
+        -0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    0.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,    0.0f,  0.0f,
 
-        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    0.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    1.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    1.0f,  1.0f,
+        -0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,    0.0f,  0.0f,
 
-        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
 
-         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,     1.0f,  0.0f,  0.0f,    1.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+         0.5f, -0.5f,  0.5f,     1.0f,  0.0f,  0.0f,    0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
 
-        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,    0.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,    1.0f,  1.0f,
+         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,    1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,    1.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,    0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,    0.0f,  1.0f,
 
-        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f
+        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,    0.0f,  1.0f,
+         0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,    1.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,    1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,    1.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,    0.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,    0.0f,  1.0f
     };
 
 
@@ -138,12 +138,16 @@ int main()
     //5: The stride, which is the space between consecutive vertex attributes. In this case, the stride is the length of 
     //   three vertices, three color coordinates, and two texture coordinates (8 floats total)
     //6: The offset of where the data begins in the buffer
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     //Specify normal data
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
+    //Specify texture coordinates
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
 
 
@@ -153,11 +157,15 @@ int main()
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
 
-    unsigned int texture = loadTexture("resources/textures/container.jpg");
+    unsigned int diffuseMap = loadTexture("resources/textures/container2.png");
+    unsigned int specularMap = loadTexture("resources/textures/container2_specular.png");
+    cubeShader.use();
+    cubeShader.setInt("material.diffuse", 0);
+    cubeShader.setInt("material.specular", 1);
 
 
     float previousTime = 0.0f;
@@ -223,10 +231,11 @@ int main()
         //
 
         //Brass
-        cubeShader.setVec3("material.ambientStrength", glm::vec3(0.2125f, 0.1275f, 0.054f));
-        cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.714f, 0.4284f, 0.18144f));
-        cubeShader.setVec3("material.specularStrength", glm::vec3(0.393548f, 0.271906f, 0.166721f));
-        cubeShader.setFloat("material.shininess", 25.6f);
+        //cubeShader.setVec3("material.ambientStrength", glm::vec3(0.2125f, 0.1275f, 0.054f));
+        //cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.714f, 0.4284f, 0.18144f));
+        //cubeShader.setVec3("material.specularStrength", glm::vec3(0.393548f, 0.271906f, 0.166721f));
+
+        cubeShader.setFloat("material.shininess", 64.0f);
 
         cubeShader.setVec3("light.ambientStrength", glm::vec3(1.0f));
         cubeShader.setVec3("light.diffuseStrength", glm::vec3(1.0f));
@@ -239,8 +248,17 @@ int main()
         cubeShader.setVec3("lightPosition", lightPosition);
 
 
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, diffuseMap);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
+
+
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
+
 
         //-------------------
         //Render light source
@@ -253,6 +271,7 @@ int main()
         lightTransform = glm::translate(lightTransform, lightPosition);
         lightTransform = glm::scale(lightTransform, glm::vec3(0.2f));
         lightShader.setMat4("modelTransform", lightTransform);
+
 
         glBindVertexArray(lightVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -351,14 +370,21 @@ unsigned int loadTexture(const char* imageFilepath)
         //6: -0- Always 0 due to legacy code
         //7, 8: -GL_RGB, GL_UNSINGED_BYTE- Specifies the format and datatype of the source image (GL_UNSIGNED_BYTE = unsigned char)
         //9: Image data for the textue
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+        GLenum format;
+        if (numColorChannels == 1)
+            format = GL_RED;
+        else if (numColorChannels == 3)
+            format = GL_RGB;
+        else if (numColorChannels == 4)
+            format = GL_RGBA;
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, textureData);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else {
         std::cout << "Failed to load texture" << std::endl;
+        stbi_image_free(textureData);
     }
-
-    stbi_image_free(textureData);
 
     return texture;
 }
