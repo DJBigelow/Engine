@@ -1,37 +1,6 @@
 #include "Mesh.h"
 #include <string>
 
-std::vector<Vertex> Mesh::getVertices()
-{
-    return vertices;
-}
-
-std::vector<unsigned int> Mesh::getIndices()
-{
-    return indices;
-}
-
-std::vector<Texture> Mesh::getTextures()
-{
-    return textures;
-}
-
-
-
-void Mesh::setVertices(std::vector<Vertex> vertices)
-{
-    this->vertices = vertices;
-}
-
-void Mesh::setIndices(std::vector<unsigned int> indices)
-{
-    this->indices = indices;
-}
-
-void Mesh::setTextures(std::vector<Texture> textures)
-{
-    this->textures = textures;
-}
 
 
 

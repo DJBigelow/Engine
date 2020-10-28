@@ -18,7 +18,6 @@ uniform Material material;
 
 uniform Light light;
 
-uniform vec3 objectColor;
 
 uniform vec3 lightPosition;
 uniform vec3 cameraPosition;

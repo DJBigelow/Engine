@@ -161,6 +161,8 @@ int main()
     glEnableVertexAttribArray(0);
 
 
+
+
     unsigned int diffuseMap = loadTexture("resources/textures/container2.png");
     unsigned int specularMap = loadTexture("resources/textures/container2_specular.png");
     cubeShader.use();
@@ -203,32 +205,26 @@ int main()
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);  
         cubeShader.setMat4("projectionTransform", projection);
           
-
         glm::mat4 viewTransformation = camera.getViewMatrix();
         cubeShader.setMat4("viewTransform", viewTransformation);
-
 
         glm::mat4 normalMatrix = glm::transpose(glm::inverse(modelTransform));
         cubeShader.setMat4("normalMatrix", normalMatrix);
 
-
         cubeShader.setVec3("cameraPosition", camera.getPosition());
 
-
-        cubeShader.setVec3("objectColor", 1.0f, 0.5f, 0.44f);
         
         //Obsidian
-      /*  cubeShader.setVec3("material.ambientStrength", glm::vec3(0.05375f, 0.05f, 0.06625f));
-        cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.18275f, 0.17f, 0.22525f));
-        cubeShader.setVec3("material.specularStrength", glm::vec3(0.332741f, 0.328634f, 0.346435f));
-        cubeShader.setFloat("material.shininess", 0.3f);*/
+        //cubeShader.setVec3("material.ambientStrength", glm::vec3(0.05375f, 0.05f, 0.06625f));
+        //cubeShader.setVec3("material.diffuseStrength", glm::vec3(0.18275f, 0.17f, 0.22525f));
+        //cubeShader.setVec3("material.specularStrength", glm::vec3(0.332741f, 0.328634f, 0.346435f));
+        //cubeShader.setFloat("material.shininess", 0.3f);
 
-        ///*Pearl*/
+        //Pearl
         //cubeShader.setVec3("material.ambientStrength", glm::vec3(0.25f, 0.20725f, 0.20725f));
         //cubeShader.setVec3("material.diffuseStrength", glm::vec3(1.0f, 0.829f, 0.829f));
         //cubeShader.setVec3("material.specularStrength", glm::vec3(0.296648f, 0.296648f, 0.296648f));
-        //cubeShader.setFloat("material.shininess", 0.088f);
-        //
+        //cubeShader.setFloat("material.shininess", 0.088f);     
 
         //Brass
         //cubeShader.setVec3("material.ambientStrength", glm::vec3(0.2125f, 0.1275f, 0.054f));
@@ -242,7 +238,7 @@ int main()
         cubeShader.setVec3("light.specularStrength", glm::vec3(1.0f));
 
 
-        lightPosition.z = -1.0f;
+        //lightPosition.z = -1.0f;
         lightPosition.x *= sin(glfwGetTime());
         lightPosition.y *= -cos(glfwGetTime());
         cubeShader.setVec3("lightPosition", lightPosition);
@@ -350,17 +346,6 @@ unsigned int loadTexture(const char* imageFilepath)
     glBindTexture(GL_TEXTURE_2D, texture);
 
 
-    //Set texture wrapping/filtering options for currently bound texture object
-    //These two near-identical calls are to set the texture wrapping options along the S and T axes (equivalent to x and y)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-    //Texture filtering option for minifying operations (scaling the texture down) and magnifying operations
-    //When specifying these options for minifying operations, we can also set the method for mipmap filtering
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
     if (textureData) {
         //Arguments
         //1: -GL_TEXTURE_2D- Specifies the texture target, i.e. the texture currently bound to GL_TEXTURE_2D in the previous line
@@ -378,8 +363,19 @@ unsigned int loadTexture(const char* imageFilepath)
         else if (numColorChannels == 4)
             format = GL_RGBA;
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, textureData);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, textureData);
         glGenerateMipmap(GL_TEXTURE_2D);
+
+        //Set texture wrapping/filtering options for currently bound texture object
+   //These two near-identical calls are to set the texture wrapping options along the S and T axes (equivalent to x and y)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        //Texture filtering option for minifying operations (scaling the texture down) and magnifying operations
+        //When specifying these options for minifying operations, we can also set the method for mipmap filtering
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     }
     else {
         std::cout << "Failed to load texture" << std::endl;
